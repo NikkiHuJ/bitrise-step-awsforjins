@@ -615,8 +615,14 @@ pre.editor-colors .fold-marker:after {
   <body class='markdown-preview' data-use-github-style><h1 id='stg-j-pic-'>$APP_NAME</h1>
 <p>更新日：$BUILDDATE</p>
 <h2 id='2018-09-11-api-'>BUILD Version : $BUNDLESHORTVER</h2>
-<h4 id="-">インストール</h4>
+<h4 id='-'>インストール</h4>
 <p> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></p>
+<h2 id='-'>Git情報</h2>
+<ul>
+  <li>Commit Author: $GIT_CLONE_COMMIT_AUTHOR_NAME</li>
+  <li>Commit Title: $GIT_CLONE_COMMIT_MESSAGE_SUBJECT<br>Detail : $GIT_CLONE_COMMIT_MESSAGE_BODY</li>
+  <li>git Branch: $BITRISE_GIT_BRANCH</li>
+</ul>
 </body>
 </html>
 " > "${generated_plist_path}"
