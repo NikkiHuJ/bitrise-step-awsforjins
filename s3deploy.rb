@@ -207,6 +207,38 @@ begin
 
   email_ready_link_url = "itms-services://?action=download-manifest&url=#{public_url_plist}"
   export_output('S3_DEPLOY_STEP_EMAIL_READY_URL', email_ready_link_url)
+  ENV['S3_DEPLOY_STEP_URL_PLIST'] = "#{public_url_ipa}"
+
+
+  #
+  # index generation - we have to run it after we have obtained the public url to the ipa
+  log_info('Generating index.html...')
+
+  success = system("sh #{@this_script_path}/gen_index.sh")
+
+  fail 'Failed to generate index.html' unless success
+
+  log_done('Generating index.html succed')
+
+  #
+  # index upload
+  index_local_path = 'index.html'
+  public_url_index = ''
+
+  if File.exist?(index_local_path)
+    log_info('Uploading index.html...')
+
+    index_path_in_bucket = "#{base_path_in_bucket}/index.html"
+    index_full_s3_path = "s3://#{options[:bucket_name]}/#{index_path_in_bucket}"
+    public_url_index = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], index_path_in_bucket)
+
+    fail 'Failed to upload index.html' unless do_s3upload(index_local_path, index_full_s3_path, acl_arg)
+    fail 'Failed to remove index' unless system(%Q{rm "#{index_local_path}"})
+
+    log_done('index.html upload success')
+  else
+    log_warn('NO index.html generated :<')
+  end
 
   #
   # Print deploy infos
