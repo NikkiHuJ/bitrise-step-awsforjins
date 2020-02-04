@@ -230,10 +230,14 @@ begin
     log_info('Uploading index.html...')
 
     index_path_in_bucket = "#{base_path_in_bucket}/index.html"
+    index_root_path_in_bucket = "index.html"
     index_full_s3_path = "s3://#{options[:bucket_name]}/#{index_path_in_bucket}"
+    index_root_full_s3_path = "s3://#{options[:bucket_name]}/#{index_root_path_in_bucket}"
     public_url_index = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], index_path_in_bucket)
+    public_url_root_index = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], index_root_path_in_bucket)
 
     fail 'Failed to upload index.html' unless do_s3upload(index_local_path, index_full_s3_path, acl_arg)
+    fail 'Failed to upload index.html to root' unless do_s3upload(index_local_path, index_root_full_s3_path, acl_arg)
     fail 'Failed to remove index' unless system(%Q{rm "#{index_local_path}"})
 
     log_done('index.html upload success')
@@ -259,6 +263,8 @@ begin
   end
 
   log_details("* Plist: #{public_url_plist}")
+  log_details("* Index html: #{public_url_index}")
+  log_details("* Root Index html: #{public_url_root_index}")
 
   log_info('Install link:')
   log_details("#{email_ready_link_url}")
