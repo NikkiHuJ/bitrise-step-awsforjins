@@ -1,87 +1,141 @@
-#
-# A couple of useful guides & docs:
-#
-# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
-# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
-# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
-# - Bitrise docs: http://devcenter.bitrise.io/
-# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
-
-title: |-
-  awsForJINS
-summary: |
-  upload ipa file and generate a index.html file
-description: |
-  upload ipa file and generate a index.html file
-website: https://github.com/NikkiHuJ/bitrise-step-awsforjins
-source_code_url: https://github.com/NikkiHuJ/bitrise-step-awsforjins
-support_url: https://github.com/NikkiHuJ/bitrise-step-awsforjins/issues
-host_os_tags:
-  - osx-10.10
-  - ubuntu-16.04
-
-# If this step should be available only for certain project types
-# just uncomment this `project_type_tags` section and include all the
-# project types supported by the step. If the step can be used for all
-# project types then you can just remove this section.
-# If no `project_type_tags` specified (or specified as an empty array)
-# that means the step can be used for any project type.
-# You can find more information about project type tags in the Step Development Guideline:
-# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
-#
-# project_type_tags:
-#   - ios
-#   - macos
-#   - android
-#   - xamarin
-#   - react-native
-#   - cordova
-#   - ionic
-
-# Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
-# You can find more information about type tags in the Step Development Guideline:
-# https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+title: Deploy to Amazon S3
+summary: Upload your iOS Application to Amazon S3
+description: |-
+  This step deploys an Xcode archive to Amazon S3.
+  Requirements: An Xcode Archive Step must run before this step and you must have an Amazon S3 account. 
+  To register an Amazon S3 account, [click here](http://aws.amazon.com/s3/).
+website: https://github.com/bitrise-io/steps-amazon-s3-deploy
+source_code_url: https://github.com/bitrise-io/steps-amazon-s3-deploy
+support_url: https://github.com/bitrise-io/steps-amazon-s3-deploy/issues
+project_type_tags:
+  - ios
+  - react-native
+  - xamarin
+  - cordova
+  - ionic
+  - flutter
 type_tags:
   - deploy
-
 is_requires_admin_user: true
 is_always_run: false
 is_skippable: false
-run_if: ""
-
 deps:
   brew:
-  - name: git
-  - name: wget
-  apt_get:
-  - name: git
-  - name: wget
-
-
-toolkit:
-  bash:
-    entry_file: step.sh
-
-
+  - name: awscli
+run_if: ""
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - ipa_path: "$BITRISE_IPA_PATH"
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
-      description: |
-        Description of this input.
-
-        Can be Markdown formatted text.
-      is_expand: true
+      title: "IPA path"
+      summary: ""
+      description: ""
       is_required: true
-      value_options: []
-
-outputs:
-  - EXAMPLE_STEP_OUTPUT:
+  - dsym_path: "$BITRISE_DSYM_PATH"
     opts:
-      title: "Example Step Output"
-      summary: Summary. No more than 2-3 sentences.
+      title: "DSYM path (optional)"
+      summary: ""
+      description: ""
+  - app_slug: "$BITRISE_APP_SLUG"
+    opts:
+      title: "BITRISE's App-Slug variable (passed automatically on Bitrise)"
+      summary: ""
+      description: ""
+      is_required: true
+      is_expand: true
+  - build_slug: "$BITRISE_BUILD_SLUG"
+    opts:
+      title: "BITRISE's Build-Slug variable (passed automatically on Bitrise)"
+      summary: ""
+      description: ""
+      is_required: true
+      is_expand: true
+  - aws_access_key: ""
+    opts:
+      title: "Amazon AWS Access Key"
+      summary: ""
+      description: ""
+      is_required: true
+      is_expand: true
+      is_sensitive: true
+  - aws_secret_key: ""
+    opts:
+      title: "Amazon AWS Secret Access Key"
+      summary: ""
+      description: ""
+      is_required: true
+      is_expand: true
+      is_sensitive: true
+  - bucket_name: ""
+    opts:
+      title: "Amazon S3 Bucket Name"
+      summary: ""
+      description: ""
+      is_required: true
+  - bucket_region: ""
+    opts:
+      title: "Amazon S3 Bucket Region"
+      summary: ""
       description: |
-        Description of this output.
+        Amazon S3 Bucket Region
 
-        Can be Markdown formatted text.
+        If you use default s3 region (us-east-1), you can leave it empty,
+        otherwise you should provide this input.
+  - path_in_bucket: "bitrise_$BITRISE_APP_SLUG/${BITRISE_BUILD_TRIGGER_TIMESTAMP}_build_${BITRISE_BUILD_SLUG}"
+    opts:
+      title: "Amazon S3 File Path In Bucket"
+      summary: ""
+      description: |-
+        Optional, if there is no specified value, then the default will be:
+
+            bitrise_$BITRISE_APP_SLUG/${BITRISE_BUILD_TRIGGER_TIMESTAMP}_build_${BITRISE_BUILD_SLUG}
+  - file_access_level: "public_read"
+    opts:
+      title: "Amazon S3 file access level"
+      value_options:
+        - "private"
+        - "public_read"
+      is_required: true
+outputs:
+  - S3_DEPLOY_STEP_URL_IPA: ""
+    opts:
+      title: "Amazon S3 Deploy IPA URL"
+      summary: ""
+      description: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
+  - S3_DEPLOY_STEP_URL_DSYM: ""
+    opts:
+      title: "Amazon S3 Deploy DSYM URL"
+      summary: ""
+      description: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
+  - S3_DEPLOY_STEP_URL_PLIST: ""
+    opts:
+      title: "Amazon S3 Deploy .plist URL"
+      summary: ""
+      description: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
+  - S3_DEPLOY_STEP_STATUS: ""
+    opts:
+      title: "Amazon S3 Deploy result ('success' or 'failed')"
+      summary: ""
+      description: ""
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
+  - S3_DEPLOY_STEP_EMAIL_READY_URL: ""
+    opts:
+      title: "Amazon S3 Deploy .plist URL"
+      summary: ""
+      description: |-
+        In a link-ready format, for example:
+
+            itms-services://?action=download-manifest&url=...
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
