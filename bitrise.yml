@@ -47,6 +47,7 @@ workflows:
             echo "S3_DEPLOY_STEP_URL_PLIST: ${S3_DEPLOY_STEP_URL_PLIST}"
             echo "S3_DEPLOY_STEP_STATUS: ${S3_DEPLOY_STEP_STATUS}"
             echo "S3_DEPLOY_STEP_EMAIL_READY_URL: ${S3_DEPLOY_STEP_EMAIL_READY_URL}"
+            echo "S3_DEPLOY_STEP_URL_INDEX: ${S3_DEPLOY_STEP_URL_INDEX}"
 
   # ----------------------------------------------------------------
   # --- workflows to Share this step into a Step Library

@@ -207,7 +207,8 @@ begin
 
   email_ready_link_url = "itms-services://?action=download-manifest&url=#{public_url_plist}"
   export_output('S3_DEPLOY_STEP_EMAIL_READY_URL', email_ready_link_url)
-  ENV['S3_DEPLOY_STEP_URL_PLIST'] = "#{public_url_ipa}"
+  ENV['S3_DEPLOY_STEP_EMAIL_READY_URL'] = "#{email_ready_link_url}"
+  ENV['S3_DEPLOY_STEP_URL_PLIST'] = "#{public_url_plist}"
 
 
   #
@@ -239,6 +240,8 @@ begin
   else
     log_warn('NO index.html generated :<')
   end
+  export_output('S3_DEPLOY_STEP_URL_INDEX', public_url_index)
+  ENV['S3_DEPLOY_STEP_URL_INDEX'] = "#{public_url_index}"
 
   #
   # Print deploy infos

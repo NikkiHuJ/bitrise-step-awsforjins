@@ -1,5 +1,5 @@
-title: Deploy to Amazon S3
-summary: Upload your iOS Application to Amazon S3
+title: Deploy to Amazon S3 JINS
+summary: Upload iOS Application to Amazon S3
 description: |-
   This step deploys an Xcode archive to Amazon S3.
   Requirements: An Xcode Archive Step must run before this step and you must have an Amazon S3 account. 
@@ -136,6 +136,14 @@ outputs:
         In a link-ready format, for example:
 
             itms-services://?action=download-manifest&url=...
+      is_expand: false
+      is_required: true
+      is_dont_change_value: true
+  - S3_DEPLOY_STEP_URL_INDEX: ""
+    opts:
+      title: "Amazon S3 Deploy index.html URL"
+      summary: ""
+      description: ""
       is_expand: false
       is_required: true
       is_dont_change_value: true

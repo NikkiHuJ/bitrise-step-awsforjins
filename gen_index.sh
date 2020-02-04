@@ -615,7 +615,7 @@ pre.editor-colors .fold-marker:after {
 <p>更新日：2020-02-04</p>
 <h2 id='2018-09-11-api-'>$BUNDLESHORTVER</h2>
 <h4 id="-">インストール</h4>
-<p> <a href='itms-services://?action=download-manifest&url=$S3_DEPLOY_STEP_URL_PLIST'> テストアプリ [GL J-PIC (2.6検)]  </a></p>
+<p> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></p>
 <h2 id="-">対応内容</h2>
 <ul>
   <li>NT棚卸し動作確認用</li>
