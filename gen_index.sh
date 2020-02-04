@@ -29,6 +29,7 @@ APP_NAME=${APP_BASE_NAME%.app}
 
 BUNDLEID=`/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" ./Payload/"$APP_BASE_NAME"/Info.plist`
 BUNDLESHORTVER=`/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" ./Payload/"$APP_BASE_NAME"/Info.plist`
+BUILDDATE=`TZ=Asia/Tokyo date "+%Y/%m/%d-%H:%M:%S"`
 
 generated_plist_path="./index.html"
 if [ -e "${generated_plist_path}" ]; then
@@ -612,15 +613,10 @@ pre.editor-colors .fold-marker:after {
 </style>
   </head>
   <body class='markdown-preview' data-use-github-style><h1 id='stg-j-pic-'>テスト用 $APP_NAME</h1>
-<p>更新日：2020-02-04</p>
-<h2 id='2018-09-11-api-'>$BUNDLESHORTVER</h2>
+<p>更新日：$BUILDDATE</p>
+<h2 id='2018-09-11-api-'>BUILD Version : $BUNDLESHORTVER</h2>
 <h4 id="-">インストール</h4>
 <p> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></p>
-<h2 id="-">対応内容</h2>
-<ul>
-  <li>NT棚卸し動作確認用</li>
-</ul>
-<p>※棚卸し本番作業前にはこちらのGL J-PIC(2.6検)アプリは削除してください</p>
 </body>
 </html>
 " > "${generated_plist_path}"
