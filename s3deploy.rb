@@ -229,6 +229,7 @@ begin
 
   if File.exist?(index_local_path)
     log_info('Uploading index.html...')
+    log_info("* Access Level: #{options[:should_update_root]}")
 
     index_path_in_bucket = "#{base_path_in_bucket}/index.html"
     index_root_path_in_bucket = "index.html"
