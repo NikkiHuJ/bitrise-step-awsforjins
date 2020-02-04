@@ -24,6 +24,12 @@ deps:
   - name: awscli
 run_if: ""
 inputs:
+  - should_update_root: true
+    opts:
+      title: "It will updated root index html"
+      summary: ""
+      description: ""
+      is_required: true
   - ipa_path: "$BITRISE_IPA_PATH"
     opts:
       title: "IPA path"

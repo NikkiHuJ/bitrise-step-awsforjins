@@ -70,7 +70,8 @@ options = {
   bucket_name: ENV['bucket_name'],
   bucket_region: ENV['bucket_region'],
   path_in_bucket: ENV['path_in_bucket'],
-  acl: ENV['file_access_level']
+  acl: ENV['file_access_level'],
+  should_update_root: ENV['should_update_root']
 }
 
 #
@@ -237,7 +238,9 @@ begin
     public_url_root_index = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], index_root_path_in_bucket)
 
     fail 'Failed to upload index.html' unless do_s3upload(index_local_path, index_full_s3_path, acl_arg)
-    fail 'Failed to upload index.html to root' unless do_s3upload(index_local_path, index_root_full_s3_path, acl_arg)
+    if options[:should_update_root]
+      fail 'Failed to upload index.html to root' unless do_s3upload(index_local_path, index_root_full_s3_path, acl_arg)
+
     fail 'Failed to remove index' unless system(%Q{rm "#{index_local_path}"})
 
     log_done('index.html upload success')

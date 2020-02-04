@@ -40,7 +40,7 @@ echo "<!DOCTYPE html>
 <html>
   <head>
       <meta charset='utf-8' />
-      <title>jpic_deploy</title>
+      <title>$bucket_name</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
 .markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(255, 255, 255); }
@@ -612,7 +612,7 @@ pre.editor-colors .fold-marker:after {
 }
 </style>
   </head>
-  <body class='markdown-preview' data-use-github-style><h1 id='stg-j-pic-'>テスト用 $APP_NAME</h1>
+  <body class='markdown-preview' data-use-github-style><h1 id='stg-j-pic-'>$APP_NAME</h1>
 <p>更新日：$BUILDDATE</p>
 <h2 id='2018-09-11-api-'>BUILD Version : $BUNDLESHORTVER</h2>
 <h4 id="-">インストール</h4>
