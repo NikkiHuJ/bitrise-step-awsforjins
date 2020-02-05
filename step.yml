@@ -26,9 +26,15 @@ run_if: ""
 inputs:
   - should_update_root: true
     opts:
-      title: "It will updated root index html"
+      title: "Updated index on root"
       summary: ""
-      description: ""
+      description: "It will updated root index html"
+      is_required: true
+  - detail_index: true
+    opts:
+      title: "generate a detail html"
+      summary: ""
+      description: "It will have commit message"
       is_required: true
   - ipa_path: "$BITRISE_IPA_PATH"
     opts:

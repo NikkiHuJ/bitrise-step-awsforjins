@@ -71,7 +71,8 @@ options = {
   bucket_region: ENV['bucket_region'],
   path_in_bucket: ENV['path_in_bucket'],
   acl: ENV['file_access_level'],
-  should_update_root: ENV['should_update_root']
+  should_update_root: ENV['should_update_root'],
+  detail_index: ENV['detail_index']
 }
 
 #
@@ -217,8 +218,13 @@ begin
   #
   # index generation - we have to run it after we have obtained the public url to the ipa
   log_info('Generating index.html...')
+  log_info("* detail_index: #{options[:detail_index]}")
 
-  success = system("sh #{@this_script_path}/gen_index.sh")
+  if options[:detail_index] == true
+    success = system("sh #{@this_script_path}/gen_index_detail.sh")
+  else
+    success = system("sh #{@this_script_path}/gen_index.sh")
+  end
 
   fail 'Failed to generate index.html' unless success
 
@@ -231,7 +237,7 @@ begin
 
   if File.exist?(index_local_path)
     log_info('Uploading index.html...')
-    log_info("* Access Level: #{options[:should_update_root]}")
+    log_info("* should_update_root: #{options[:should_update_root]}")
 
     index_path_in_bucket = "#{base_path_in_bucket}/index.html"
     index_root_path_in_bucket = "index.html"
