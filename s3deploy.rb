@@ -220,8 +220,9 @@ begin
   log_info('Generating index.html...')
   log_info("* detail_index: #{options[:detail_index]}")
 
-  if options[:detail_index] == true
+  if options[:detail_index] == "true"
     success = system("sh #{@this_script_path}/gen_index_detail.sh")
+    log_info("*Generating detail_index")
   else
     success = system("sh #{@this_script_path}/gen_index.sh")
   end
@@ -247,7 +248,8 @@ begin
     public_url_root_index = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], index_root_path_in_bucket)
 
     fail 'Failed to upload index.html' unless do_s3upload(index_local_path, index_full_s3_path, acl_arg)
-    if options[:should_update_root] == true
+    if options[:should_update_root] == "true"
+      log_info("* uploading index.html to root folder...")
       fail 'Failed to upload index.html to root' unless do_s3upload(index_local_path, index_root_full_s3_path, acl_arg)
     end
     fail 'Failed to remove index' unless system(%Q{rm "#{index_local_path}"})
