@@ -150,6 +150,8 @@ begin
   ipa_path_in_bucket = "#{base_path_in_bucket}/#{File.basename(options[:ipa])}"
   ipa_full_s3_path = s3_object_uri_for_bucket_and_path(options[:bucket_name], ipa_path_in_bucket)
   public_url_ipa = public_url_for_bucket_and_path(options[:bucket_name], options[:bucket_region], ipa_path_in_bucket)
+  public_url_ipa = URI.encode(public_url_ipa)
+  log_info("IPA url: #{public_url_ipa}")
 
   fail 'Failed to upload IPA' unless do_s3upload(options[:ipa], ipa_full_s3_path, acl_arg)
 
