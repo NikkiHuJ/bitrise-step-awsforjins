@@ -40,6 +40,7 @@ echo "<!DOCTYPE html>
 <html>
   <head>
       <meta charset='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <title>$bucket_name</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
@@ -613,11 +614,11 @@ pre.editor-colors .fold-marker:after {
 </style>
   </head>
   <body class='markdown-preview' data-use-github-style>
-<h1>更新日：$BUILDDATE</h1>
-<h2>GJPIC Version : $BUNDLESHORTVER</h2>
-<h4 id='-'>インストール</h4>
-<p> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></p>
-<h2 id='-'>Git情報</h2>
+<p>更新日：$BUILDDATE</p>
+<h3>GJPIC Version : $BUNDLESHORTVER</h3>
+<p>インストール</p>
+<h4> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></h4>
+<h3>Git情報</h3>
 <ul>
   <li>Commit Author: $GIT_CLONE_COMMIT_AUTHOR_NAME</li>
   <li>Commit Title: $GIT_CLONE_COMMIT_MESSAGE_SUBJECT<br>Detail : $GIT_CLONE_COMMIT_MESSAGE_BODY</li>
