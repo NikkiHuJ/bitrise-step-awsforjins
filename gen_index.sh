@@ -40,6 +40,7 @@ echo "<!DOCTYPE html>
 <html>
   <head>
       <meta charset='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <title>$bucket_name</title>
       <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); overflow: auto; }
 .markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
@@ -614,9 +615,9 @@ pre.editor-colors .fold-marker:after {
   </head>
   <body class='markdown-preview' data-use-github-style>
 <p>更新日：$BUILDDATE</p>
-<h2 id='2018-09-11-api-'>GJPIC Version : $BUNDLESHORTVER</h2>
-<h4 id='-'>インストール</h4>
-<p> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></p>
+<h3>GJPIC Version : $BUNDLESHORTVER</h3>
+<p>インストール</p>
+<h4> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></h4>
 </body>
 </html>
 " > "${generated_plist_path}"
