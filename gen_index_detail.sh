@@ -628,8 +628,6 @@ pre.editor-colors .fold-marker:after {
 <h4>国選択</h4>
 <ul>
   <li><a href='testReport/1_region_test.html' target='_blank'>1_region_test</a></li>
-  <li><a href='testReport/2_login_test_basic.html' target='_blank'>2_login_test_basic</a></li>
-  <li><a href='testReport/2_login_test_HK.html' target='_blank'>2_login_test_HK</a></li>
 </ul>
 <h4>ログイン</h4>
 <ul>
