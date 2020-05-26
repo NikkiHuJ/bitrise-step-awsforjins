@@ -664,10 +664,14 @@ pre.editor-colors .fold-marker:after {
   <li><a href='testReport/7_defectiveItem_test_7_6_all.html' target='_blank'>7_defectiveItem_test_7_6_all</a></li>
   <li><a href='testReport/7_defectiveItem_test_7_7_all.html' target='_blank'>7_defectiveItem_test_7_7_all</a></li>
 </ul>
-<h4>棚卸（オフライン）</h4>
+<h4>棚卸（オンライン）</h4>
 <ul>
   <li><a href='testReport/10_inventory_online_basic.html' target='_blank'>10_inventory_online_basic</a></li>
   <li><a href='testReport/10_inventory_online_input_all.html' target='_blank'>10_inventory_online_input_all</a></li>
+</ul>
+<h4>棚卸（オフライン）</h4>
+<ul>
+  <li><a href='testReport/11_inventory_offline.html' target='_blank'>11_inventory_offline</a></li>
 </ul>
 </body>
 </html>
