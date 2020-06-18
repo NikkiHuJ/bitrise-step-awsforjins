@@ -615,7 +615,7 @@ pre.editor-colors .fold-marker:after {
   </head>
   <body class='markdown-preview' data-use-github-style>
 <p>更新日：$BUILDDATE</p>
-<h3>GJPIC Version : $BUNDLESHORTVER</h3>
+<h3>$APP_NAME Version : $BUNDLESHORTVER</h3>
 <p>インストール</p>
 <h4> <a href='$S3_DEPLOY_STEP_EMAIL_READY_URL'> $APP_NAME インストール </a></h4>
 </body>
