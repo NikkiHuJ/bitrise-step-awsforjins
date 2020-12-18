@@ -624,55 +624,6 @@ pre.editor-colors .fold-marker:after {
   <li>Commit Title: $GIT_CLONE_COMMIT_MESSAGE_SUBJECT<br>Detail : $GIT_CLONE_COMMIT_MESSAGE_BODY</li>
   <li>git Branch: $BITRISE_GIT_BRANCH</li>
 </ul>
-<h2>テストレポート</h2>
-<h4>国選択</h4>
-<ul>
-  <li><a href='testReport/1_region_test.html' target='_blank'>1_region_test</a></li>
-</ul>
-<h4>ログイン</h4>
-<ul>
-  <li><a href='testReport/2_login_test_basic.html' target='_blank'>2_login_test_basic</a></li>
-  <li><a href='testReport/2_login_test_HK.html' target='_blank'>2_login_test_HK</a></li>
-</ul>
-<h4>ログアウト</h4>
-<ul>
-  <li><a href='testReport/3_logout_test.html' target='_blank'>3_logout_test</a></li>
-</ul>
-<h4>ホーム画面</h4>
-<ul>
-  <li><a href='testReport/4_home_test_basic.html' target='_blank'>4_home_test_basic</a></li>
-  <li><a href='testReport/4_home_test_HK.html' target='_blank'>4_home_test_HK</a></li>
-</ul>
-<h4>設定画面</h4>
-<ul>
-  <li><a href='testReport/5_setting_test.html' target='_blank'>5_setting_test</a></li>
-</ul>
-<h4>在庫照会</h4>
-<ul>
-  <li><a href='testReport/6_stockInquiryInit_test_basic.html' target='_blank'>6_stockInquiryInit_test_basic</a></li>
-  <li><a href='testReport/6_stockInquiryInit_test_6_2_all.html' target='_blank'>6_stockInquiryInit_test_6_2_all</a></li>
-  <li><a href='testReport/6_stockInquiryInit_test_6_6_all.html' target='_blank'>6_stockInquiryInit_test_6_6_all</a></li>
-  <li><a href='testReport/6_stockInquiryInit_test_6_8_all.html' target='_blank'>6_stockInquiryInit_test_6_8_all</a></li>
-</ul>
-<h4>不良品登録</h4>
-<ul>
-  <li><a href='testReport/7_defectiveItem_test_7_1_all.html' target='_blank'>7_defectiveItem_test_7_1_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_2_all.html' target='_blank'>7_defectiveItem_test_7_2_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_3_all.html' target='_blank'>7_defectiveItem_test_7_3_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_4_all.html' target='_blank'>7_defectiveItem_test_7_4_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_5_all.html' target='_blank'>7_defectiveItem_test_7_5_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_6_all.html' target='_blank'>7_defectiveItem_test_7_6_all</a></li>
-  <li><a href='testReport/7_defectiveItem_test_7_7_all.html' target='_blank'>7_defectiveItem_test_7_7_all</a></li>
-</ul>
-<h4>棚卸（オンライン）</h4>
-<ul>
-  <li><a href='testReport/10_inventory_online_basic.html' target='_blank'>10_inventory_online_basic</a></li>
-  <li><a href='testReport/10_inventory_online_input_all.html' target='_blank'>10_inventory_online_input_all</a></li>
-</ul>
-<h4>棚卸（オフライン）</h4>
-<ul>
-  <li><a href='testReport/11_inventory_offline.html' target='_blank'>11_inventory_offline</a></li>
-</ul>
 </body>
 </html>
 " > "${generated_plist_path}"
